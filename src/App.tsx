@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC } from 'react';
 import AppNavigator from './navgators/AppNavigator';
 import { Provider } from 'react-redux';
 

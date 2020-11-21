@@ -12,6 +12,10 @@ export default combineReducers({
 export type StoreResource<T> = {
     count: number;
     loading: boolean;
+    error: {
+        hasError: boolean;
+        message: string;
+    };
     nextPage: number | undefined;
     results: T;
 }

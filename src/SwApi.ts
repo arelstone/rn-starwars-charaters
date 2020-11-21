@@ -1,14 +1,8 @@
-type NextOrPrevious = string | null;
-
 export enum ResourceType {
-    Film = 'films',
     People = 'people',
     Planet = 'planets',
-    Species = 'species',
-    Starship = 'starships',
-    Vehicle = 'vehicles'
 }
-
+export type Gender = 'male' | 'female' | 'hermaphrodite' | 'none' | 'n/a';
 export type ResourceUrl = string;
 
 export type Resource = {
@@ -27,6 +21,7 @@ export type Person = Resource & {
     hair_color: string;
     height: string;
     homeworld: string;
+    homeworld_id: number;
     mass: string;
     name: string;
     skin_color: string;
@@ -36,31 +31,16 @@ export type Person = Resource & {
 };
 
 export type Planet = Resource & {
+    id: number;
     name: string;
-    rotationPeriod: string;
-    orbitalPeriod: string;
+    rotation_period: string;
+    orbital_period: string;
     diameter: string;
     climate: string;
     gravity: string;
     terrain: string;
-    surfaceWater: string;
+    surface_water: string;
     population: string;
     residents: ResourceUrl[];
-    films: ResourceUrl[];
-};
-
-
-export type Species = Resource & {
-    name: string;
-    classification: string;
-    designation: string;
-    averageHeight: string;
-    skinColors: string;
-    hairColors: string;
-    eyeColors: string;
-    averageLifespan: string;
-    homeworld: string;
-    language: string;
-    people: ResourceUrl[];
     films: ResourceUrl[];
 };

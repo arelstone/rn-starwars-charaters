@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaViewProps } from 'react-native-safe-area-context';
 
 interface ScreenProps extends SafeAreaViewProps {
@@ -9,12 +9,12 @@ interface ScreenProps extends SafeAreaViewProps {
 const Screen: FC<ScreenProps> = ({ children, ...props }) => {
     const style = [styles.container, props.style || {}];
 
-    return <SafeAreaView
+    return <View
         {...props}
         {...{ style }}
     >
         {children}
-    </SafeAreaView>;
+    </View>;
 };
 
 export default Screen;

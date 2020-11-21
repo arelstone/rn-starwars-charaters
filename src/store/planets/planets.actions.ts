@@ -1,40 +1,37 @@
-import { Dispatch } from 'react';
-import { GetState } from '..';
-import { Planet } from '../../SwApi';
-import { getNumber } from '../../utils/storeUtils';
-import { SetPlanetsParams, FetchPlanetsAction } from './planet.types';
+import { Planet, ResourceType } from '../../SwApi';
+import { getNumber, nextPage } from '../../utils/storeUtils';
+import { FAILED_FETCHING_PLANETS, START_FETCHING_PLANETS, DONE_FETCHING_PLANETS, SET_PLANETS } from './planet.types';
+import { baseUrl } from '../../config';
 
-export const fetchPlanets = (page = 1) => async (dispatch: Dispatch<FetchPlanetsAction>, getState: GetState) => {
+export const fetchPlanets = (page = 1, uri: ResourceType = ResourceType.Planet) => async (dispatch: any) => {
     if (page === 1) {
-        dispatch({ type: 'START_FETCHING_PLANETS' });
+        dispatch({ type: START_FETCHING_PLANETS });
     }
-    const response = await fetch(`https://swapi.dev/api/planets/?page=${page}`)
+    const response = await fetch(`${baseUrl()}/${uri}/?page=${page}`)
         .then(r => r.json())
-        .catch(error => console.log('###error', error));
+        .catch(error => dispatch({
+            type: FAILED_FETCHING_PLANETS,
+            payload: error.message,
+        }));
 
-    const nextPage = response.next && getNumber(response.next);
+    const next = nextPage(response);
 
-    const results = response.results.map((result: Planet) => ({
-        ...result,
-        id: getNumber(result.url),
-    }));
-
-    dispatch(setPlanets({
-        nextPage: response.next && getNumber(response.next),
-        results: [...results, ...getState().planets.results],
-        count: response.count,
-    }));
-
-    // if (nextPage) {
-    //     return dispatch(fetchPlanets(nextPage));
-    // }
-
-    return dispatch({ type: 'DONE_FETCHING_PLANETS' });
-};
-
-const setPlanets = (payload: SetPlanetsParams) => dispatch => {
-    return dispatch({
-        type: 'SET_PLANETS',
-        payload,
+    dispatch({
+        type: SET_PLANETS,
+        payload: {
+            nextPage: response.next && getNumber(response.next),
+            count: response.count,
+            results: response.results.map((result: Planet) => ({
+                ...result,
+                id: getNumber(result.url),
+            })),
+        },
     });
+
+    if (next) {
+        return dispatch(fetchPlanets(next));
+    }
+
+    return dispatch({ type: DONE_FETCHING_PLANETS });
 };
+

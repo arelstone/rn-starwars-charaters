@@ -1,30 +1,56 @@
 import React, { FC } from 'react';
-import { View, Text, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 import { Person } from '../SwApi';
+import { NUMBER_OF_COLUMNS } from '../screens/MainScreen';
+import colors from '../colors';
 
-interface PersonCardProps extends Person { }
+interface PersonCardProps {
+    charater: Person;
+    onPress: () => void;
+}
 
-const PersonCard: FC<PersonCardProps> = ({ id, name, skin_color, hair_color, eye_color }) => {
+export const PersonCard: FC<PersonCardProps> = ({ onPress, charater }) => {
     const { width } = useWindowDimensions();
-    const dimentions = width / 3;
+    const dimentions = (width / NUMBER_OF_COLUMNS) - 15;
+    const planet = useSelector((state: RootState) => state.planets.results.find(planet => planet.id === charater.id));
 
-    return <View
-        style={{
-            width: dimentions,
-            height: dimentions,
-            borderWidth: 1,
-            borderColor: 'red',
-            margin: 5,
-            padding: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-        }}
+    return <TouchableOpacity
+        onPress={() => onPress()}
+        style={[styles.container, { width: dimentions, height: dimentions }]}
     >
-        <Text>{name}</Text>
-        <Text>{skin_color}</Text>
-        <Text>{hair_color}</Text>
-        <Text>{eye_color}</Text>
-    </View>;
+        <View style={styles.textContainer}>
+            <Text
+                style={styles.text}
+                testID="CharaterName"
+            >
+                {charater.name}
+            </Text>
+            <Text
+                style={styles.text}
+                testID="PlanetName"
+            >
+                {planet?.name || 'N/A'}
+            </Text>
+        </View>
+    </TouchableOpacity>;
 };
 
 export default PersonCard;
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 5,
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.cardBackgroundColor,
+    },
+    textContainer: {
+        alignItems: 'center',
+    },
+    text: {
+        textAlign: 'center',
+    },
+});

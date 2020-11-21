@@ -1,17 +1,15 @@
 import React from 'react';
 import { ShallowWrapper, shallow } from 'enzyme';
-import App from '../App';
+import Loading from '../Loading';
 
 let wrapper: ShallowWrapper;
 
-describe('<App />', () => {
+describe('<Loading />', () => {
     beforeAll(() => {
-        wrapper = shallow(<App />);
+        wrapper = shallow(<Loading />);
     });
 
     it('should match snapshot', () => {
-        console.log(wrapper.debug());
-
         expect(wrapper).toMatchSnapshot();
     });
 });
