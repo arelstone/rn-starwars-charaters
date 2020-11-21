@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import AppNavigator from './navgators/AppNavigator';
+import { Provider } from 'react-redux';
 
+import { store } from './store';
 interface AppProps { }
 
 const App: FC<AppProps> = () => {
-    return <AppNavigator />;
+    return <Provider {...{ store }}>
+        <AppNavigator />
+    </Provider>;
 };
 
 export default App;

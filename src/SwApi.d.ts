@@ -1,3 +1,5 @@
+type NextOrPrevious = string | null;
+
 export enum ResourceType {
     Film = 'films',
     People = 'people',
@@ -11,23 +13,23 @@ export type ResourceUrl = string;
 
 export type Resource = {
     url: ResourceUrl;
-    id: string;
+    id: number;
     created: string;
     edited: string;
 };
 
 
-export type People = Resource & {
-    birthYear: string;
-    eyeEolor: string;
+export type Person = Resource & {
+    birth_year: string;
+    eye_color: string;
     films: ResourceUrl[];
     gender: string;
-    hairColor: string;
+    hair_color: string;
     height: string;
-    homeWorld: string;
+    homeworld: string;
     mass: string;
     name: string;
-    skinColor: string;
+    skin_color: string;
     species: ResourceUrl[];
     starships: ResourceUrl[];
     vehicles: ResourceUrl[];
