@@ -18,15 +18,13 @@ interface MainScreenProps extends DispatchProp<any> {
 
 export const NUMBER_OF_COLUMNS = 3;
 
-const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, charaters, dispatch, planets }) => {
+export const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, charaters, dispatch, planets }) => {
     const [isLoading] = useState<boolean>(planets.loading || charaters.loading);
 
     useRef(useEffect(() => {
         dispatch(fetchPersons());
         dispatch(fetchPlanets());
     }, []));
-
-    console.log(planets.results[0]);
 
     const hasError = planets.error.hasError || charaters.error.hasError;
     const errorMessage = planets.error.message || charaters.error.message;

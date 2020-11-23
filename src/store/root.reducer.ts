@@ -19,3 +19,10 @@ export type StoreResource<T> = {
     nextPage: number | undefined;
     results: T;
 }
+
+export type SetDataParam<T> = {
+    count: number;
+    next: string;
+    previous?: string;
+    results: T;
+}
