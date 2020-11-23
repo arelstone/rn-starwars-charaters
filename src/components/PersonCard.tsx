@@ -1,28 +1,28 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { RootState } from '../store';
-import { Person } from '../SwApi';
+import { Person, Planet } from '../SwApi';
 import { NUMBER_OF_COLUMNS } from '../screens/MainScreen';
 import colors from '../colors';
 
 interface PersonCardProps {
     charater: Person;
+    planet?: Planet;
     onPress: () => void;
 }
 
-export const PersonCard: FC<PersonCardProps> = ({ onPress, charater }) => {
+export const PersonCard: FC<PersonCardProps> = ({ onPress, charater, planet }) => {
     const { width } = useWindowDimensions();
     const dimentions = (width / NUMBER_OF_COLUMNS) - 15;
-    const planet = useSelector((state: RootState) => state.planets.results.find(planet => planet.id === charater.id));
 
     return <TouchableOpacity
-        onPress={() => onPress()}
+        onPress={onPress}
         style={[styles.container, { width: dimentions, height: dimentions }]}
     >
         <View style={styles.textContainer}>
             <Text
-                style={styles.text}
+                style={[styles.text, styles.charaterName]}
                 testID="CharaterName"
             >
                 {charater.name}
@@ -37,7 +37,11 @@ export const PersonCard: FC<PersonCardProps> = ({ onPress, charater }) => {
     </TouchableOpacity>;
 };
 
-export default PersonCard;
+const mapStateToProps = ({ planets }: RootState, { charater }: PersonCardProps) => ({
+    planet: planets.results.find(planet => planet.id === charater.id),
+});
+
+export default connect(mapStateToProps)(PersonCard);
 
 const styles = StyleSheet.create({
     container: {
@@ -52,5 +56,8 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
+    },
+    charaterName: {
+        fontSize: 20,
     },
 });

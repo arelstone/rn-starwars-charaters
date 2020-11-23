@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainScreen /> should match snapshot 1`] = `
+<Screen>
+  <FlatList
+    contentContainerStyle={
+      Object {
+        "padding": 10,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "birth_year": "19 BBY",
+          "created": "2014-12-09T13:50:51.644000Z",
+          "edited": "2014-12-10T13:52:43.172000Z",
+          "eye_color": "Blue",
+          "films": Array [],
+          "gender": "male",
+          "hair_color": "Blond",
+          "height": "172",
+          "homeworld": "https://swapi.dev/api/planets/1/",
+          "homeworld_id": 1,
+          "id": 1,
+          "mass": "77",
+          "name": "Luke Skywalker",
+          "skin_color": "Fair",
+          "species": Array [],
+          "starships": Array [],
+          "url": "https://swapi.dev/api/people/1/",
+          "vehicles": Array [
+            "https://swapi.dev/api/vehicles/14/",
+          ],
+        },
+        Object {
+          "birth_year": "112BBY",
+          "created": "2014-12-10T15:10:51.357000Z",
+          "edited": "2014-12-20T21:17:50.309000Z",
+          "eye_color": "yellow",
+          "films": Array [],
+          "gender": "n/a",
+          "hair_color": "n/a",
+          "height": "167",
+          "homeworld": "http://swapi.dev/api/planets/1/",
+          "homeworld_id": 1,
+          "id": 2,
+          "mass": "75",
+          "name": "C-3PO",
+          "skin_color": "gold",
+          "species": Array [],
+          "starships": Array [],
+          "url": "http://swapi.dev/api/people/2/",
+          "vehicles": Array [],
+        },
+      ]
+    }
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={3}
+    onEndReachedThreshold={2}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</Screen>
+`;

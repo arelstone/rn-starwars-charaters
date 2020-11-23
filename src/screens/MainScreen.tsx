@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ListRenderItemInfo, Text, View, FlatList } from 'react-native';
+import { ListRenderItemInfo, Text, View, FlatList, StyleSheet } from 'react-native';
 import { connect, DispatchProp } from 'react-redux';
 import { AppNavigatorParams } from '../navgators';
 import { RootState } from '../store';
@@ -19,13 +19,12 @@ interface MainScreenProps extends DispatchProp<any> {
 export const NUMBER_OF_COLUMNS = 3;
 
 export const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, charaters, dispatch, planets }) => {
-    const [isLoading] = useState<boolean>(planets.loading || charaters.loading);
-
     useRef(useEffect(() => {
         dispatch(fetchPersons());
         dispatch(fetchPlanets());
     }, []));
 
+    const isLoading = planets.loading || charaters.loading;
     const hasError = planets.error.hasError || charaters.error.hasError;
     const errorMessage = planets.error.message || charaters.error.message;
 
@@ -34,15 +33,18 @@ export const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, char
     }
 
     return <Screen>
-
-        {hasError && <View><Text>{errorMessage}</Text></View>}
+        {hasError && <View
+            testID="Error"
+        >
+            <Text>{errorMessage}</Text>
+        </View>}
 
         <FlatList
-            contentContainerStyle={{ padding: 10 }}
+            contentContainerStyle={styles.contentContainer}
             data={charaters.results || []}
             renderItem={({ item }: ListRenderItemInfo<Person>) => <PersonCard
                 charater={item}
-                onPress={() => navigate('Details', { id: item.id })}
+                onPress={() => navigate('Details', { id: item.id, planetId: item.homeworld_id })}
             />}
             numColumns={NUMBER_OF_COLUMNS}
             keyExtractor={item => `item_${item.id}`}
@@ -50,9 +52,13 @@ export const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, char
     </Screen>;
 };
 
-export default connect(
-    (state: RootState) => ({
-        charaters: state.persons,
-        planets: state.planets,
-    }),
-)(MainScreen);
+const mapStateToprops = (state: RootState) => ({
+    charaters: state.persons,
+    planets: state.planets,
+});
+
+export default connect(mapStateToprops)(MainScreen);
+
+const styles = StyleSheet.create({
+    contentContainer: { padding: 10 },
+});

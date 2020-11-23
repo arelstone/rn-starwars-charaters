@@ -8,6 +8,7 @@ module.exports = {
     ],
     transformIgnorePatterns: [
         'node_modules/(?!static-container)/',
+        'node_modules/(?!(jest-)?react-native|@react-native-community|@react-navigation)',
     ],
     testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$',
     transform: {

@@ -6,7 +6,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 
 export type AppNavigatorParams = {
     Main: undefined;
-    Details: { id: number; };
+    Details: { id: number; planetId: number; };
 }
 
 const Stack = createStackNavigator<AppNavigatorParams>();

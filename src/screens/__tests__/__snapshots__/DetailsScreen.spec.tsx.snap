@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DetailsScreen /> should match snapshot 1`] = `
+<Screen
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "left": 450,
+        "position": "absolute",
+        "right": 450,
+        "top": 450,
+      }
+    }
+  >
+    <Avatar
+      gender="male"
+      hairColor="Blond"
+      skinColor="Fair"
+    />
+  </View>
+  <View>
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+          "fontWeight": "bold",
+        }
+      }
+      testID="Charatername"
+    >
+      Luke Skywalker
+    </Text>
+    <Text
+      testID="PlanetName"
+    >
+      Lives on: 
+      Tatooine
+    </Text>
+    <Text
+      testID="Gender"
+    >
+      Gender: 
+      male
+    </Text>
+    <Text
+      testID="HairColor"
+    >
+      Hair color: 
+      Blond
+    </Text>
+    <Text
+      testID="EyeColor"
+    >
+      Eye color: 
+      Blue
+    </Text>
+    <Text
+      testID="SkinColor"
+    >
+      Skin color: 
+      Fair
+    </Text>
+  </View>
+</Screen>
+`;

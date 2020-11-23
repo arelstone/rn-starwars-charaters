@@ -17,7 +17,7 @@ export type Person = Resource & {
     birth_year: string;
     eye_color: string;
     films: ResourceUrl[];
-    gender: string;
+    gender: Gender;
     hair_color: string;
     height: string;
     homeworld: string;

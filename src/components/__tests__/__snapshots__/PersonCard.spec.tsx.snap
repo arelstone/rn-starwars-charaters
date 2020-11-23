@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PersonCard /> should match snapshot 1`] = `
+<ForwardRef
+  onPress={[MockFunction]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.2)",
+        "justifyContent": "center",
+        "margin": 5,
+        "padding": 5,
+      },
+      Object {
+        "height": 235,
+        "width": 235,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "textAlign": "center",
+          },
+          Object {
+            "fontSize": 20,
+          },
+        ]
+      }
+      testID="CharaterName"
+    >
+      Luke Skywalker
+    </Text>
+    <Text
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+      testID="PlanetName"
+    >
+      Tatooine
+    </Text>
+  </View>
+</ForwardRef>
+`;
