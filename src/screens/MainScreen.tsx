@@ -5,9 +5,9 @@ import { connect, DispatchProp } from 'react-redux';
 import { AppNavigatorParams } from '../navgators';
 import { RootState } from '../store';
 import { fetchPlanets } from '../store/planets/planets.actions';
-import { fetchPersons } from '../store/persons/persons.actions';
 import { Person } from '../SwApi';
 import { Screen, Loading } from '../components';
+import { fetchPersons } from '../store/persons/persons.actions';
 import PersonCard from '../components/PersonCard';
 
 interface MainScreenProps extends DispatchProp<any> {
@@ -31,6 +31,9 @@ export const MainScreen: FC<MainScreenProps> = ({ navigation: { navigate }, char
     if (isLoading) {
         return <Loading />;
     }
+
+    console.log([...new Set(charaters.results.map(c => c.eye_color))]);
+
 
     return <Screen>
         {hasError && <View

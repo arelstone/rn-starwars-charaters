@@ -6,10 +6,10 @@ interface AvatarProps {
     gender: Gender;
     hairColor: string;
     skinColor: string;
+    eyeColor: string;
 }
 
 export const AVATAR_SIZE = 300;
-
 
 const topTypes = {
     male: 'ShortHairShortRound',
@@ -17,7 +17,6 @@ const topTypes = {
     'n/a': 'NoHair',
     'none': 'NoHair',
     hermaphrodite: 'LongHairBun',
-
 };
 
 const hairColors = {
@@ -27,75 +26,65 @@ const hairColors = {
     blonde: 'Blonde',
     white: 'SilverGray',
     grey: 'Platinum',
-    'n/a': 'NoHair',
-    'none': 'NoHair',
+    none: 'NoHair',
     'auburn, grey': 'Platinum',
     'auburn, white': 'PastelPink',
     'brown, grey': 'BlondeGolden',
 };
 
 const skinColors = {
-    'light': 'Light',
-    'gold': 'Yellow',
-    'white': 'Pale',
-    'fair': 'Tanned',
-    'white, blue': 'Tanned',
-    'white, red': 'Tanned',
-    'unknown': 'None',
-    'green': 'Pale',
-    'pale': 'Pale',
-    'dark': 'Black',
-    'brown': 'Brown',
-    'orange': 'Yellow',
-    'yellow': 'Yellow',
-    'green-tan, brown': '',
-    'brown mottle': '',
-    'metal': '',
-    'grey': '',
-    'mottled green': '',
-    'grey, red': '',
-    'blue, grey': '',
-    'blue': '',
-    'grey, green, yellow': '',
-    'red': 'DarkBrown',
-    'grey, blue': '',
-    'tan': 'Tanned',
-    'fair, green, yellow': '',
-    'brown, white': '',
-    'silver, red': '',
-    'red, blue, white': '',
-    'green, grey': '',
+    light: 'Light',
+    gold: 'Yellow',
+    white: 'Pale',
+    fair: 'Tanned',
+    unknown: 'None',
+    green: 'Pale',
+    pale: 'Pale',
+    dark: 'Black',
+    brown: 'Brown',
+    orange: 'Yellow',
+    yellow: 'Yellow',
 };
 
-const clotheTypeForGender = {
-    male: 'BlazerShirt',
-    female: 'ShirtVNeck',
-    'n/a': 'Overall',
-    'none': 'Overall',
-    hermaphrodite: 'Hoodie',
+const clothColors = {
+    blue: 'Blue01',
+    brown: 'PastelBlue',
+    yellow: 'PastelYellow',
+    'blue-gray': 'Gray01',
+    red: 'Red',
+    black: 'Black',
+    pink: 'Pink',
+    unknown: 'Heather',
+    orange: 'PastelOrange',
+    hazel: 'Blue03',
+    'green, yellow': 'PastelRed',
+    'red, blue': 'Blue02',
+    gold: 'PastelGreen',
+    white: 'White',
 };
 
-const Avatar: FC<AvatarProps> = ({ gender, hairColor, skinColor }) => {
+const Avatar: FC<AvatarProps> = ({ gender, hairColor, skinColor, eyeColor }) => {
     // eslint-disable-next-line
     // @ts-expect-error
-    const SkinColor = skinColors[skinColor] || '';
-    const ClotheType = clotheTypeForGender[gender] || '';
+    const SkinColor = skinColors[skinColor] || 'Light';
     // eslint-disable-next-line
     // @ts-expect-error 
-    const HairColor = hairColors[hairColor] || '';
+    const HairColor = hairColors[hairColor] || 'NoHair';
+    // eslint-disable-next-line
+    // @ts-expect-error 
+    const ClotheColor = clothColors[eyeColor] || 'Gray02';
 
     return <Avataaars
         topType={topTypes[gender]}
         size={AVATAR_SIZE}
-        avatarStyle="Circle"
+        avatarStyle="Transparent"
         accessoriesType="Blank"
-        facialHairType={gender === 'male' ? 'MoustacheFancy' : 'Blank'}
-        eyeType="Happy"
+        eyeType="Default"
         eyebrowType="Default"
         mouthType="Default"
-        facialHairColor={HairColor}
         hairColor={HairColor}
-        clotheType={ClotheType}
+        clotheType="GraphicShirt"
+        clotheColor={ClotheColor}
         skinColor={SkinColor}
     />;
 };

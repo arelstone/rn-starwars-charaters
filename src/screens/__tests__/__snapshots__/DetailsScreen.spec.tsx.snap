@@ -34,7 +34,7 @@ exports[`<DetailsScreen /> should match snapshot 1`] = `
           "fontWeight": "bold",
         }
       }
-      testID="Charatername"
+      testID="CharaterName"
     >
       Luke Skywalker
     </Text>

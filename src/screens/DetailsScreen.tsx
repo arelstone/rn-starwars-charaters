@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useReducer } from 'react';
 import { Text, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Screen } from '../components';
@@ -30,11 +30,12 @@ export const DetailsScreen: FC<DetailsScreenProps> = ({ navigation, charater, pl
                 gender={charater.gender}
                 hairColor={charater.hair_color}
                 skinColor={charater.skin_color}
+                eyeColor={charater.eye_color}
             />}
         </View>
         <View>
             <Text
-                testID="Charatername"
+                testID="CharaterName"
                 style={styles.charaterName}
             >
                 {charater?.name}

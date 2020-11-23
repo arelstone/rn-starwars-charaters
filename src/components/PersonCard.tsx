@@ -33,6 +33,8 @@ export const PersonCard: FC<PersonCardProps> = ({ onPress, charater, planet }) =
             >
                 {planet?.name || 'N/A'}
             </Text>
+            <Text>EyeColor: {charater.eye_color}</Text>
+            <Text>Gender: {charater.gender}</Text>
         </View>
     </TouchableOpacity>;
 };
